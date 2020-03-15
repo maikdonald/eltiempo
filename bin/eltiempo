@@ -1,0 +1,95 @@
+#!/usr/bin/env ruby
+
+require 'eltiempo'
+
+@temperature = Eltiempo::Temperature.new
+@city = Eltiempo::City.new
+
+AVAILABLE_FORECASTS = {
+	"-today" => "today",
+	"-av_max" => "av_max",
+	"-av_min" => "av_min"
+}
+
+def how_to_use
+	puts "This Ruby CLI require two params: The action and the City\n"
+    puts "Usage:"
+    puts "eltiempo -action 'City name'\n"
+    puts "Available actions:"
+    puts "  -today Returns the current temperature in the city"
+    puts "  -av_max Returns the maximum temperature in the city today"
+    puts "  -av_min Returns the minimum temperature in the city today"
+    puts "Available cities:"
+    puts "#{@city.available_cities.keys[0..15].join(", ")} ..."
+end
+
+def process_argv(option)
+	case option
+	when "-h"
+		puts "This is the help menu."
+		how_to_use()
+		exit
+	when "-today"
+		@options[:required_forecast] = AVAILABLE_FORECASTS["-today"]
+	when "-av_max"
+		@options[:required_forecast] = AVAILABLE_FORECASTS["-av_max"]
+	when "-av_min"
+		@options[:required_forecast] = AVAILABLE_FORECASTS["-av_min"]
+	when String
+		if option == ""
+			puts "You should introduce a city. Don't forget to add single quotation marks to the city name ('Barcelona')"
+			exit
+		end
+		@options[:required_city] = option
+	end
+end
+
+@options = {}
+
+
+ARGV.each { |option| process_argv(option) }
+
+if ARGV.length < 2 
+	if @options[:required_forecast]
+		puts "You should introduce a city. Don't forget to add single quotation marks to the city name ('Barcelona')"
+		puts "\n\n"
+		puts how_to_use
+		exit
+	else
+		puts how_to_use
+		exit
+	end
+end
+
+if @options[:required_forecast] && @options[:required_city]
+	# if we have the required_forecast and the required_city we are ready to
+	# try to find the city_id
+	city_id = @city.getCityId(@options[:required_city])
+	if !city_id
+		# if we didn't find the city we suggest the user some cities that we have
+		# based on the city the user introduced
+		# Basically we try to ensure the user didn't make a mistake writing the city
+		city_suggestions = @city.getCitySuggestions(@options[:required_city])
+		if city_suggestions.length>0
+			puts "We didn't found the city you introduced. Do you mean?"
+			puts city_suggestions
+		else
+			puts "We didn't found the city you introduce. Try another one."
+		end
+		exit
+	end
+
+	case @options[:required_forecast]
+	when "today"
+		out = @temperature.today(city_id)
+		puts "The temperature in #{@options[:required_city]} is #{out}º today" if out
+	when "av_max"
+		out = @temperature.av_max(city_id)
+		puts "The maximum average temperature this week in #{@options[:required_city]} is #{out}º" if out
+	when "av_min"
+		out = @temperature.av_min(city_id)
+		puts "The minimum average temperature this week in #{@options[:required_city]} is #{out}º" if out
+	end
+	
+	puts "Sorry, some unexpected error happened. Try with another city." if !out
+end
