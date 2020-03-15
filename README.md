@@ -29,12 +29,12 @@ Usage:
 eltiempo -action 'City name'
 
 Available actions:
-
--today Returns the current temperature in the city
--av_max Returns the maximum temperature in the city today
--av_min Returns the minimum temperature in the city today
+ - today Returns the current temperature in the city
+ - av_max Returns the maximum temperature in the city today
+ - av_min Returns the minimum temperature in the city today
 
 Available cities:
+
 abrera, agora parc, aguilar de segarra, aiguafreda, aire sol, albarells, alella, alella parc, aleny, alpens, l' ametlla del vallès, arenys de mar, arenys de munt, argençola, argentona, artés ...
 
 ## License
