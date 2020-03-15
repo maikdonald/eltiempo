@@ -4,7 +4,7 @@ Be aware of the forecast in your city with the new Eltiempo gem
 
 ## Installation
 
- - Clone the repo from github
+ - Clone the repository from github
 
   ```ruby
   git clone git@github.com:maikdonald/eltiempo.git
@@ -22,7 +22,8 @@ Be aware of the forecast in your city with the new Eltiempo gem
 
 ## Usage
 
-In order to use thi CLI you will need two params: The action and the City
+In order to use thi CLI you will need two params: The action and the City.
+
 Usage:
 
 eltiempo -action 'City name'
@@ -42,4 +43,3 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the Eltiempo project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/eltiempo/blob/master/CODE_OF_CONDUCT.md).
-# eltiempo
