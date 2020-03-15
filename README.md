@@ -1,39 +1,39 @@
 # Eltiempo
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/eltiempo`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Be aware of the forecast in your city with the new Eltimpo gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
+ - Clone the repo from github
 
-```ruby
-gem 'eltiempo'
-```
+  ```ruby
+  git clone git@github.com:maikdonald/eltiempo.git
+  ```
 
-And then execute:
+ - Navigate to the /eltiempo directory
 
-    $ bundle install
+ - And then execute:
+  ```ruby
+  bundle install
+  rake install
+  ```
 
-Or install it yourself as:
-
-    $ gem install eltiempo
+ - You are ready to go. Enjoy!
 
 ## Usage
 
-TODO: Write usage instructions here
+In order to use thi CLI you will need two params: The action and the City
+Usage:
 
-## Development
+eltiempo -action 'City name'
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Available actions:
+  -today Returns the current temperature in the city
+  -av_max Returns the maximum temperature in the city today
+  -av_min Returns the minimum temperature in the city today
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/eltiempo. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/eltiempo/blob/master/CODE_OF_CONDUCT.md).
-
+Available cities:
+abrera, agora parc, aguilar de segarra, aiguafreda, aire sol, albarells, alella, alella parc, aleny, alpens, l' ametlla del vallès, arenys de mar, arenys de munt, argençola, argentona, artés ...
 
 ## License
 
