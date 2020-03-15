@@ -1,6 +1,6 @@
 # Eltiempo
 
-Be aware of the forecast in your city with the new Eltimpo gem
+Be aware of the forecast in your city with the new Eltiempo gem
 
 ## Installation
 
